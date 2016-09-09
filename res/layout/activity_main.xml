@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_toLeftOf="@id/enterBtn"
+        android:layout_toLeftOf="@+id/next"
         android:ems="10"
         android:hint="输入adb命令" >
 
@@ -30,20 +30,47 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/edit"
+        android:background="#999999"
         android:text="startAdbWifi" />
+
+    <Button
+        android:id="@+id/prev"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/enterBtn"
+        android:text="Prev" />
+
+    <Button
+        android:id="@+id/next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/prev"
+        android:text="Next" />
+
+    <Button
+        android:id="@+id/screnshot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/enterBtn"
+        android:background="#4488ff"
+        android:text="截图" />
 
     <Button
         android:id="@+id/stopAdbWifi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/edit"
+        android:layout_marginLeft="3dp"
         android:layout_toRightOf="@+id/startAdbWifi"
+        android:background="#999999"
         android:text="stopAdbWifi" />
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/startAdbWifi" >
+        android:layout_below="@+id/screnshot" >
 
         <TextView
             android:id="@+id/showTextView"
@@ -54,22 +81,4 @@
             android:text="回显"
             android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium" />
     </ScrollView>
-
-    <Button
-        android:id="@+id/next"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/edit"
-        android:layout_marginLeft="16dp"
-        android:layout_toRightOf="@+id/stopAdbWifi"
-        android:text="Next" />
-
-    <Button
-        android:id="@+id/prev"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/edit"
-        android:layout_toRightOf="@+id/next"
-        android:text="Prev" />
-
 </RelativeLayout>

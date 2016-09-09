@@ -1,7 +1,8 @@
-package com.allan.adbwifi;
+package com.allan.adbtool;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -34,7 +35,7 @@ public class CmdHelper {
     // return result;
     // }
 
-    public static void execShell(String cmd) {
+    public static void execSuShell(String cmd) {
         try {
             // 权限设置
             Process p = Runtime.getRuntime().exec("su");
@@ -50,6 +51,7 @@ public class CmdHelper {
             dataOutputStream.close();
             outputStream.close();
         } catch (Throwable t) {
+            Log.d("allan", "ssdsds");
             t.printStackTrace();
         }
     }
@@ -111,6 +113,28 @@ public class CmdHelper {
         RuntimeExec("setprop service.adb.tcp.port -1");
         RuntimeExec("stop adbd");
         RuntimeExec("start adbd");
+    }
+    
+    public static String screenshot() {
+        int id = 1;
+        File file = null;
+        String filepath = "";
+        while (true) {
+            filepath = "/sdcard/screenshot" + id + ".png";
+            file = new File(filepath);
+            if (file.exists()) {
+                id++;
+            } else {
+                break;
+            }
+        }
+        RuntimeExec("rm " + filepath);
+        RuntimeExec("screencap -p " + filepath);
+        
+        if (file.exists()) {
+            return filepath;
+        }
+        return "";
     }
 
     public static String getPkgId(String pkg) {

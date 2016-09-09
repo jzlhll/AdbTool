@@ -1,6 +1,7 @@
-package com.allan.adbwifi;
+package com.allan.adbtool;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,7 +14,6 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 public class LogcatActivity extends Activity implements OnClickListener {
-    private TextView mShowTextView;
     private Button mEnterButton;
 
     private CheckBox mTimeCheckBox;
@@ -67,7 +67,6 @@ public class LogcatActivity extends Activity implements OnClickListener {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         setContentView(R.layout.logcat_act);
-        mShowTextView = (TextView) findViewById(R.id.showTextView);
         mEnterButton = (Button) findViewById(R.id.alllog);
         editText = (EditText) findViewById(R.id.tagEdit);
         mRadioButtonV = (RadioButton) findViewById(R.id.radio0);
@@ -93,37 +92,24 @@ public class LogcatActivity extends Activity implements OnClickListener {
         return 'V';
     }
 
-    private class MyThread implements Runnable {
-
-        @Override
-        public void run() {
-            try {
-                Thread.sleep(30);
-                CmdHelper.awaitShowAllLog(mTimeCheckBox.isChecked(), editText
-                        .getText().toString(), getLevel());
-            } catch (InterruptedException e) {
-                Log.d("allan", "stoped!");
-            } finally {
-                Log.d("allan", "over!");
-            }
-        }
-    }
-
-    private Thread mThread;
-
     private boolean isStop = true;
-
+    
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
         case R.id.alllog:
             if (isStop) {
-                mThread = new Thread(new MyThread());
-                mThread.start();
+                Intent intent = new Intent(this, LogcatService.class);
+                intent.putExtra("action", "start");
+                intent.putExtra("isTime", mTimeCheckBox.isChecked());
+                intent.putExtra("tag", editText.getText().toString());
+                intent.putExtra("level", getLevel());
+                startService(intent);
                 mEnterButton.setText("loging...");
             } else {
-                String pss = CmdHelper.getPkgId("logcat");
-                CmdHelper.killAllPs(pss);
+                Intent intent = new Intent(this, LogcatService.class);
+                intent.putExtra("action", "stop");
+                startService(intent);
                 mEnterButton.setText("Logcat");
             }
             isStop = !isStop;

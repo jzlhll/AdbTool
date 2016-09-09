@@ -1,4 +1,4 @@
-package com.allan.adbwifi;
+package com.allan.adbtool;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

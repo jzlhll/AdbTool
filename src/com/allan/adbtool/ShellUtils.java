@@ -1,4 +1,4 @@
-package com.allan.adbwifi;
+package com.allan.adbtool;
 import java.io.BufferedReader;  
 import java.io.DataOutputStream;  
 import java.io.IOException;  

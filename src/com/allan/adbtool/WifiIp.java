@@ -1,4 +1,4 @@
-package com.allan.adbwifi;
+package com.allan.adbtool;
 
 import android.content.Context;
 import android.net.wifi.WifiManager;
@@ -17,6 +17,6 @@ public class WifiIp
   
   private static String intToIp(int paramInt)
   {
-    return (paramInt & 0xFF) + "." + (paramInt >> 8 & 0xFF) + "." + (paramInt >> 16 & 0xFF) + "." + (paramInt >> 24 & 0xFF);
+      return (paramInt & 0xFF) + "." + (paramInt >> 8 & 0xFF) + "." + (paramInt >> 16 & 0xFF) + "." + (paramInt >> 24 & 0xFF);
   }
 }

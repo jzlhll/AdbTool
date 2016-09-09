@@ -1,4 +1,4 @@
-package com.allan.adbwifi;
+package com.allan.adbtool;
 
 import java.util.ArrayList;
 
@@ -60,7 +60,7 @@ public class SharedPreferenceHelper {
     }
     
     public void writeTimeChecked(boolean isChecked) {
-        editor.putBoolean("logTag", isChecked).commit();
+        editor.putBoolean("logTime", isChecked).commit();
     }
 
     public String getPrev() {
