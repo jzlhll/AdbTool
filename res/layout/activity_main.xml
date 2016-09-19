@@ -50,15 +50,6 @@
         android:text="Next" />
 
     <Button
-        android:id="@+id/screnshot"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/enterBtn"
-        android:background="#4488ff"
-        android:text="截图" />
-
-    <Button
         android:id="@+id/stopAdbWifi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

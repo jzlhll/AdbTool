@@ -1,4 +1,4 @@
-package com.allan.adbtool;
+package com.allan.adbtool.wifiAdb;
 
 import android.content.Context;
 import android.net.wifi.WifiManager;

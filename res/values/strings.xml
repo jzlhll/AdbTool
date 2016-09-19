@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">AllanTool</string>
-    <string name="logcat_name">AllanLog</string>
+    <string name="app_name">AdbTool</string>
+    <string name="logcat_name">AdbLog</string>
     <string name="hello_world">Hello world!</string>
 
 </resources>

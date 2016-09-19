@@ -1,4 +1,6 @@
-package com.allan.adbtool;
+package com.allan.adbtool.logcat;
+
+import com.allan.adbtool.CmdHelper;
 
 import android.app.Service;
 import android.content.Intent;
@@ -18,13 +20,30 @@ public class LogcatService extends Service {
         super.onCreate();
     }
 
-    private class MyThread implements Runnable {
+    private class MyRunnable implements Runnable {
 
         @Override
         public void run() {
             try {
                 Thread.sleep(30);
-                CmdHelper.awaitShowAllLog(isTimeChecked, tagString, level);
+                char l = 'V';
+                switch (level) {
+				case 1:
+					l = 'D';
+					break;
+				case 2:
+					l = 'I';
+					break;
+				case 3:
+					l = 'W';
+					break;
+				case 4:
+					l = 'E';
+					break;
+				default:
+					break;
+				}
+                CmdHelper.awaitShowAllLog(isTimeChecked, tagString, l);
             } catch (InterruptedException e) {
                 Log.d("allan", "stoped!");
             } finally {
@@ -33,13 +52,11 @@ public class LogcatService extends Service {
         }
     }
 
-    private Thread mThread;
-
     private boolean isStop = true;
 
     private boolean isTimeChecked;
     private String tagString;
-    private char level;
+    private int level;
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -49,9 +66,8 @@ public class LogcatService extends Service {
             }
             isTimeChecked = intent.getBooleanExtra("isTime", false);
             tagString = intent.getStringExtra("tag");
-            level = intent.getCharExtra("level", 'V');
-            mThread = new Thread(new MyThread());
-            mThread.start();
+            level = intent.getIntExtra("level", 0);
+            new MyRunnable().run(); //不是子线程
             isStop = true;
             return super.onStartCommand(intent, flags, startId);
         } else if (intent != null

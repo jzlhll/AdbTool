@@ -115,28 +115,6 @@ public class CmdHelper {
         RuntimeExec("start adbd");
     }
     
-    public static String screenshot() {
-        int id = 1;
-        File file = null;
-        String filepath = "";
-        while (true) {
-            filepath = "/sdcard/screenshot" + id + ".png";
-            file = new File(filepath);
-            if (file.exists()) {
-                id++;
-            } else {
-                break;
-            }
-        }
-        RuntimeExec("rm " + filepath);
-        RuntimeExec("screencap -p " + filepath);
-        
-        if (file.exists()) {
-            return filepath;
-        }
-        return "";
-    }
-
     public static String getPkgId(String pkg) {
         // return RuntimeExec("ps | grep " + pkg); TODO 貌似不能传入管道
         String string = RuntimeExec("ps");
@@ -170,7 +148,7 @@ public class CmdHelper {
             tag = "";
         }
         ArrayList<String> commandLine = new ArrayList<String>();
-        //第一步杀掉所有logcat进程
+        //第一步杀掉所有logcat进程 TODO 现在杀不掉别人的进程
         String pss = getPkgId("logcat");
         killAllPs(pss);
         // 第二步

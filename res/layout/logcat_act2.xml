@@ -1,0 +1,74 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <EditText
+        android:id="@+id/searchFilter01"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:ems="10"
+        android:hint="搜索过滤1" >
+    </EditText>
+
+    <EditText
+        android:id="@+id/searchFilter02"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/searchFilter01"
+        android:layout_margin="10dp"
+        android:ems="10"
+        android:hint="搜索过滤2" >
+    </EditText>
+
+    <Button
+        android:id="@+id/refleshShow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="10dp"
+        android:background="#55ff9911"
+        android:text="刷新" />
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/searchFilter02"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="15dp" >
+
+        <TextView
+            android:id="@+id/LogShowHere"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:text="logcat show"
+            android:visibility="gone"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium" />
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_marginLeft="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/searchFilter01"
+        android:layout_toRightOf="@+id/searchFilter02"
+        android:text="定时刷新：" />
+
+    <EditText
+        android:id="@+id/timeToRf"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/textView1"
+        android:layout_alignBaseline="@id/textView1"
+        android:layout_margin="10dp"
+        android:hint="10" >
+    </EditText>
+
+</RelativeLayout>

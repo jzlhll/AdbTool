@@ -12,7 +12,7 @@ public class SharedPreferenceHelper {
 
     private int top = 10; // top顶层 大于总数0~9
     private static final String NAME = "cmd"; // 加上一个数字就是存储的位置
-    private ArrayList<String> cmdList = new ArrayList<>();
+    private ArrayList<String> cmdList = new ArrayList<String>();
 
     /**
      * 最多保存10份
@@ -39,12 +39,20 @@ public class SharedPreferenceHelper {
         cmdList.set(9, cmd);
     }
     
-    public void writeLevel(char lev) {
-        editor.putString("logLevel", ""+lev).commit();
+    public void writeLevel(int lev) {
+        editor.putInt("logLevel", lev).commit();
     }
     
-    public char getLevel() {
-        return spPreferences.getString("logLevel", "V").charAt(0);
+    public int getLevel() {
+        return spPreferences.getInt("logLevel", 0);
+    }
+    
+    public void writeScreenshotSleepTime(int second) {
+        editor.putInt("screenshot_time", second).commit();
+    }
+    
+    public int getScreenshotSleepTime() {
+        return spPreferences.getInt("screenshot_time", 6);
     }
     
     public void writeTag(String tag) {
