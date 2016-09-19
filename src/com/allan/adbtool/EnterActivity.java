@@ -11,6 +11,7 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
@@ -44,7 +45,8 @@ public class EnterActivity extends Activity implements OnClickListener {
 		if (file.exists()) {
 			file.delete();
 		}
-		CmdHelper.RuntimeExec("/system/bin/screencap -p " + SCREENSHOT_NAME);
+		Log.d("allan", "screenshot..");
+		CmdHelper.RuntimeExec("screencap -p " + SCREENSHOT_NAME);
 	}
 
 	Runnable mScreenshotEndRunnable = new Runnable() {
